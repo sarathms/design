@@ -61,12 +61,11 @@
     "build-storybook": "build-storybook"
   },
   "jest": {
-    "roots": [
-      "<rootDir>/test/"
-    ],
     "testMatch": [
       "**/test/**/*.js"
     ],
+    "setupTestFrameworkScriptFile": "<rootDir>/test/config.js",
+    "testPathIgnorePatterns": ["<rootDir>/test/config.js"],
     "coverageReporters": [
       "html",
       "lcov"

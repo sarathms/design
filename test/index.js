@@ -3,9 +3,8 @@ import 'jest-styled-components'
 import React from 'react'
 
 import toJson from 'enzyme-to-json'
-import Enzyme from 'enzyme'
 import { mount, shallow } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
+import './config.js'
 
 import { ThemeProvider } from 'styled-components'
 
@@ -16,9 +15,7 @@ import {
   InputWithIconButton
 } from '../components'
 
-Enzyme.configure({ adapter: new Adapter() })
-
-const mountWithTheme = (el) => {
+export const mountWithTheme = (el) => {
   const context = shallow(<ThemeProvider theme={theme} />)
     .instance()
     .getChildContext()
@@ -29,7 +26,7 @@ const mountWithTheme = (el) => {
   })
 }
 
-const shallowWithTheme = (el) => {
+export const shallowWithTheme = (el) => {
   // FIXME for v4 the following:
   // https://github.com/styled-components/jest-styled-components#theming doesn't
   // work with styled-components v4, because getChildContext() is replaced with
@@ -43,7 +40,7 @@ const shallowWithTheme = (el) => {
   return shallow(el, { context })
 }
 
-const renderJSON = el => toJson(mountWithTheme(el))
+export const renderJSON = el => toJson(mountWithTheme(el))
 
 describe('Button', () => {
   test('renders', () => {
